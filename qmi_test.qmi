@@ -1,0 +1,23 @@
+package test;
+
+const TEST_PING	= 0x20;
+
+struct qmi_result {
+	u16 result;
+	u16 error;
+};
+
+struct name {
+	string name;
+};
+
+request ping_req {
+	required u8 ping[4] = 1;
+	optional name client = 0x10;
+} = 0x20;
+
+response ping_resp {
+	required qmi_result result = 0x2;
+	optional u8 pong[4] = 0x10;
+	optional name client = 0x11;
+} = 0x20;
