@@ -202,7 +202,7 @@ int main(int argc, char **argv)
 
 done:
 
-	printf("%d packets transmitted, %d received %d%% packet loss\n", sent, received, 100 * (sent - received) / received);
+	printf("%d packets transmitted, %d received %d%% packet loss\n", sent, received, 100 * (sent - received) / sent);
 
 	return 0;
 }
