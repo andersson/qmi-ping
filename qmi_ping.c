@@ -80,6 +80,7 @@ int main(int argc, char **argv)
 	struct sockaddr_qrtr sq;
 	struct qrtr_packet pkt;
 	unsigned int msg_id;
+	int instance = -1;
 	unsigned long node;
 	unsigned long port = 0;
 	struct timeval tv = { INT_MAX, };
@@ -93,10 +94,13 @@ int main(int argc, char **argv)
 	int ret;
 	int fd;
 
-	while ((opt = getopt(argc, argv, "c:")) != -1) {
+	while ((opt = getopt(argc, argv, "c:i:")) != -1) {
 		switch (opt) {
 		case 'c':
 			count = strtoul(optarg, NULL, 10);
+			break;
+		case 'i':
+			instance = strtoul(optarg, NULL, 10);
 			break;
 		default:
 			usage();
@@ -169,7 +173,8 @@ int main(int argc, char **argv)
 					break;
 			}
 
-			if (pkt.node == node) {
+			if (pkt.node == node &&
+					(instance == -1 || instance == pkt.instance)) {
 				port = pkt.port;
 
 				tv.tv_sec = 0;
