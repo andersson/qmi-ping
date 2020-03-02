@@ -162,8 +162,12 @@ int main(int argc, char **argv)
 
 		switch (pkt.type) {
 		case QRTR_TYPE_NEW_SERVER:
-			if (!pkt.node && !pkt.port)
-				break;
+			if (!pkt.node && !pkt.port) {
+				if (!port)
+					err(1, "unable to find matching test service");
+				else
+					break;
+			}
 
 			if (pkt.node == node) {
 				port = pkt.port;
