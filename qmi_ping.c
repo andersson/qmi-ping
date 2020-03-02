@@ -116,7 +116,7 @@ int main(int argc, char **argv)
 
 	fcntl(fd, F_SETFL, O_NONBLOCK);
 
-	ret = qrtr_new_lookup(fd, 15, 1, 0);
+	ret = qrtr_new_lookup(fd, 15, 0, 0);
 	if (ret < 0)
 		err(1, "failed to register new lookup");
 
