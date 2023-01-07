@@ -1,7 +1,8 @@
 OUT := qmi-ping
 
-CFLAGS := -Wall -g -O2
-LDFLAGS := -lqrtr
+CFLAGS += -Wall -g -O2
+LDFLAGS += -lqrtr
+prefix = /usr/local
 
 SRCS := qmi_ping.c qmi_test.c
 
